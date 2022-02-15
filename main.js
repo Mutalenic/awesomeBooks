@@ -4,14 +4,14 @@ const form = document.querySelector('Form');
 const title = document.querySelector('#bookTitle');
 const author = document.querySelector('#bookAuthor');
 
-function removebook(item, index) {
+function removebook(bookinfo, index) {
     const bookData = document.getElementById(index);
-    storedBooks = storedBooks.filter((item) => item !== bookitem);
-    localStorage.setItem('c', JSON.stringify(books));
+    storedBooks = storedBooks.filter((item) => item !== bookinfo);
+    localStorage.setItem('bookCollection', JSON.stringify(storedBooks));
     list.removeChild(bookData);
 }
 
-function addBook(item, index) {
+function addBook(bookinfo, index) {
     const bookData = document.createElement('div');
     bookData.classList.add('bookData');
     bookData.id = index;
@@ -22,8 +22,8 @@ function addBook(item, index) {
 
     const horizontalLine = document.createElement('hr');
 
-    bookData.innerHTML = ` <p class= 'bookTitle'> ${item.title}</p> 
-    <p class="bookAuthor">${item.author}</p> `;
+    bookData.innerHTML = ` <p class= 'bookTitle'> ${bookinfo.title}</p> 
+    <p class="bookAuthor">${bookinfo.author}</p> `;
     bookData.appendChild(removeButton);
     bookData.appendChild(horizontalLine);
     list.appendChild(bookData);
@@ -33,12 +33,12 @@ function addBook(item, index) {
     };
 
     function addBook(item){
-        books.push({
+        storedBooks.push({
             title: title.value,
             author: author.value,
         });
 
-        localStorage.setItem('bookCollection', JSON.stringify(books));
+        localStorage.setItem('bookCollection', JSON.stringify(storedBooks));
         title.value = '';
         author.value = '';
         addBook(item, (books.length - 1));
@@ -46,13 +46,13 @@ function addBook(item, index) {
 
     function updateUI() {
         if (localStorage.getItem('bookCollection')) {
-            books = JSON.parse(localStorage.getItem('bookCollection'));
-            books.forEach((item, index) => {
-                addBook(item, index);
+            storedBooks = JSON.parse(localStorage.getItem('bookCollection'));
+            storedBooks.forEach((bookinfo, index) => {
+                addBook(bookinfo, index);
             });
         } else {
             localStorage.setItem('bookCollection', '');
-            books = [];
+            storedBooks = [];
         }
     }
 
