@@ -8,9 +8,7 @@ function removebook(bookinfo, index) {
   const bookData2 = document.getElementById(index);
 
   const { author: aut, title: tit } = bookinfo;
-  storedBooks = storedBooks.filter(
-    (item) => item.author !== aut && item.title !== tit
-  );
+  storedBooks = storedBooks.filter((item) => item.author !== aut && item.title !== tit);
 
   localStorage.setItem('bookCollection', JSON.stringify(storedBooks));
   list.removeChild(bookData2);
