@@ -4,12 +4,7 @@ const form = document.querySelector('form');
 const title = document.querySelector('#bookTitle');
 const author = document.querySelector('#bookAuthor');
 
-function removebook(bookinfo, index) {
-  const bookData = document.getElementById(index);
-  storedBooks = storedBooks.filter((item) => item !== bookinfo);
-  localStorage.setItem('bookCollection', JSON.stringify(storedBooks));
-  list.removeChild(bookData);
-}
+
 
 function addBook(bookinfo, index) {
   const bookData = document.createElement('div');
@@ -66,3 +61,13 @@ form.addEventListener('submit', (e) => {
     author: author.value,
   });
 });
+
+function removebook(bookinfo, index) {
+  const bookData2 = document.getElementById(index);
+
+  const { author: aut, title: tit } = bookinfo;
+  storedBooks = storedBooks.filter((item) => item.author !== aut && item.title !== tit);
+
+  localStorage.setItem('bookCollection', JSON.stringify(storedBooks));
+  list.removeChild(bookData2);
+}
