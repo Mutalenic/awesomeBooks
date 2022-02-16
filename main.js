@@ -5,63 +5,64 @@ const title = document.querySelector('#bookTitle');
 const author = document.querySelector('#bookAuthor');
 
 function removebook(bookinfo, index) {
-    const bookData = document.getElementById(index);
-    storedBooks = storedBooks.filter((item) => item !== bookinfo);
-    localStorage.setItem('bookCollection', JSON.stringify(storedBooks));
-    list.removeChild(bookData);
+  const bookData = document.getElementById(index);
+  storedBooks = storedBooks.filter((item) => item !== bookinfo);
+  localStorage.setItem("bookCollection", JSON.stringify(storedBooks));
+  list.removeChild(bookData);
 }
 
 function addBook(bookinfo, index) {
-    const bookData = document.createElement('div');
-    bookData.classList.add('bookData');
-    bookData.id = index;
+  const bookData = document.createElement('div');
+  bookData.classList.add('bookData');
+  bookData.id = index;
 
-    const removeButton = document.createElement('button');
-    removeButton.classList.add('remove-btn');
-    removeButton.innertext = 'Remove';
+  const removeButton = document.createElement('button');
+  removeButton.classList.add('remove-btn');
+  removeButton.innertext = 'Remove';
 
-    const horizontalLine = document.createElement('hr');
+  const horizontalLine = document.createElement('hr');
 
-    bookData.innerHTML = `<p class='bookTitle'>${bookinfo.title}</p> 
+  bookData.innerHTML = `<p class='bookTitle'>${bookinfo.title}</p> 
     <p class='bookAuthor'>${bookinfo.author}</p> `;
-    bookData.appendChild(removeButton);
-    bookData.appendChild(horizontalLine);
-    list.appendChild(bookData);
+  bookData.appendChild(removeButton);
+  bookData.appendChild(horizontalLine);
+  list.appendChild(bookData);
 
-    removeButton.onclick = () => {
-        removebook(bookinfo, index);
-    };
+  removeButton.onclick = () => {
+    removebook(bookinfo, index);
+  };
 }
 
-    function addBook(item){
-        storedBooks.push({
-            title: title.value,
-            author: author.value,
-        });
+function addBookItems(item) {
+  storedBooks.push({
+    title: title.value,
+    author: author.value,
+  });
 
-        localStorage.setItem('bookCollection', JSON.stringify(storedBooks));
-        title.value = '';
-        author.value = '';
-        addBook(item, (storedBooks.length - 1));
-    }
+  localStorage.setItem('bookCollection', JSON.stringify(storedBooks));
+  title.value = '';
+  author.value = '';
+  addBook(item, storedBooks.length - 1);
+}
 
-    function updateUI() {
-        if (localStorage.getItem('bookCollection')) {
-            storedBooks = JSON.parse(localStorage.getItem('bookCollection'));
-            storedBooks.forEach((bookinfo, index) => {
-                addBook(bookinfo, index);
-            });
-        } else {
-            localStorage.setItem('bookCollection', '');
-            storedBooks = [];
-        }
-    }
-
-    updateUI();
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        addBook({
-            title: title.value,
-            author: author.value,
-        });
+function updateUI() {
+  if (localStorage.getItem('bookCollection')) {
+    storedBooks = JSON.parse(localStorage.getItem('bookCollection'));
+    storedBooks.forEach((bookinfo, index) => {
+      addBook(bookinfo, index);
     });
+  } else {
+    localStorage.setItem('bookCollection', '');
+    storedBooks = [];
+  }
+}
+
+updateUI();
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  addBookItems({
+    title: title.value,
+    author: author.value,
+  });
+});
