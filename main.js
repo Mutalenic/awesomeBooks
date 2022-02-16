@@ -1,6 +1,6 @@
 let storedBooks = [];
 const list = document.querySelector('.bookList');
-const form = document.querySelector('Form');
+const form = document.querySelector('form');
 const title = document.querySelector('#bookTitle');
 const author = document.querySelector('#bookAuthor');
 
@@ -22,15 +22,16 @@ function addBook(bookinfo, index) {
 
     const horizontalLine = document.createElement('hr');
 
-    bookData.innerHTML = ` <p class= 'bookTitle'> ${bookinfo.title}</p> 
-    <p class="bookAuthor">${bookinfo.author}</p> `;
+    bookData.innerHTML = `<p class='bookTitle'>${bookinfo.title}</p> 
+    <p class='bookAuthor'>${bookinfo.author}</p> `;
     bookData.appendChild(removeButton);
     bookData.appendChild(horizontalLine);
     list.appendChild(bookData);
 
     removeButton.onclick = () => {
-        removebook(item, index);
+        removebook(bookinfo, index);
     };
+}
 
     function addBook(item){
         storedBooks.push({
@@ -41,7 +42,7 @@ function addBook(bookinfo, index) {
         localStorage.setItem('bookCollection', JSON.stringify(storedBooks));
         title.value = '';
         author.value = '';
-        addBook(item, (books.length - 1));
+        addBook(item, (storedBooks.length - 1));
     }
 
     function updateUI() {
@@ -64,6 +65,3 @@ function addBook(bookinfo, index) {
             author: author.value,
         });
     });
-
-
-}
