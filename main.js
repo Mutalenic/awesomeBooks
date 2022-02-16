@@ -18,7 +18,7 @@ function addBook(bookinfo, index) {
 
   const removeButton = document.createElement('button');
   removeButton.classList.add('remove-btn');
-  removeButton.innertext = 'Remove';
+  removeButton.innerText = 'Remove';
 
   const horizontalLine = document.createElement('hr');
 
