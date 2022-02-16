@@ -7,7 +7,7 @@ const author = document.querySelector('#bookAuthor');
 function removebook(bookinfo, index) {
   const bookData = document.getElementById(index);
   storedBooks = storedBooks.filter((item) => item !== bookinfo);
-  localStorage.setItem("bookCollection", JSON.stringify(storedBooks));
+  localStorage.setItem('bookCollection', JSON.stringify(storedBooks));
   list.removeChild(bookData);
 }
 
