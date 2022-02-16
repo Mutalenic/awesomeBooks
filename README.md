@@ -9,7 +9,7 @@ In this project, I built a basic website that allows users to add/remove books f
 - HTML
 - Javascript
 
-## Demo link: [https://mutalenic.github.io/awesomeBooks/]
+## [Demo link](https://mutalenic.github.io/awesomeBooks/)
 
 ## Authors
 
