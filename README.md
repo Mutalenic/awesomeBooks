@@ -19,8 +19,7 @@ In this project, I built a basic website that allows users to add/remove books f
 
 ## Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [https://mutalenic.github.io/awesomeBooks/issues]
-
+Feel free to check the [Issues](https://mutalenic.github.io/awesomeBooks/issues)
 ## Getting Started
 
 To get a local copy up and running follow these simple example steps.
